@@ -9,7 +9,3 @@ llm = ChatGroq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-
-if __name__ == '__main__':
-    response = llm.invoke("how to make a cake ?")
-    print(response.content)

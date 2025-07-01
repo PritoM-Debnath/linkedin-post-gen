@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+
 class FewShotPosts:
     def __init__(self, file_path="data/processed_posts.json"):
         self.df = None
@@ -37,5 +38,9 @@ class FewShotPosts:
 
 if __name__ == "__main__":
     fs = FewShotPosts()
-    post= fs.get_filtered_post("Long", "English","Job Search")
+    #post= fs.get_filtered_post("Long", "English","Job Search")
+    topic = "Job Search"
+    length = "Long"
+    language = "English"
+    post= fs.get_filtered_post(length, language, topic)
     print(post)

@@ -12,7 +12,7 @@ def get_length_str(length):
         return "11 to 15 lines"
     return "None"
 
-def get_prompt(topic, length, language):
+def get_prompt(length, language, topic):
     length_str = get_length_str(length)
 
     prompt = f'''
@@ -22,23 +22,27 @@ def get_prompt(topic, length, language):
         3) Language: {language}
         Post should be always in english, oriented and topic focused.
         '''
-    #example = few_shot.get_filtered_post(length, language, topic)
-    example = few_shot.get_filtered_post("Long", "English","Job Search")
+
+    example = few_shot.get_filtered_post(length, language, topic)
 
     if len(example) > 0:
         prompt += "Use the writing style as per the following example:\n"
         for i, post in enumerate(example):
             post_text = post['text']
-            prompt += f"\n\n Example #{i}: {post_text}\n"
+            prompt += f"\n\n Example #{i+1}: {post_text}\n"
             if i == 2:
                 break
     return prompt
 
 def generate_post(length, language, topic):
-    prompt = get_prompt(topic, length, language)
+    prompt = get_prompt(length, language, topic)
     response = llm.invoke(prompt)
     return response.content
 
 if __name__ == "__main__":
-    post = generate_post("Job search", "Long", "English")
+    post = generate_post("Long","English", "Job Search")
     print(post)
+
+
+
+

@@ -38,9 +38,5 @@ class FewShotPosts:
 
 if __name__ == "__main__":
     fs = FewShotPosts()
-    #post= fs.get_filtered_post("Long", "English","Job Search")
-    topic = "Job Search"
-    length = "Long"
-    language = "English"
-    post= fs.get_filtered_post(length, language, topic)
+    post= fs.get_filtered_post("Long", "English","Job Search")
     print(post)
